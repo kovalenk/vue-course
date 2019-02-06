@@ -1,19 +1,22 @@
 <template>
     <div id="app">
-        <Header />
+        <Header/>
+        <AddTodo v-on:add-todo="addTodo"/>
         <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
     </div>
 </template>
 
 <script>
     import Todos from './components/Todos'
+    import AddTodo from './components/AddTodo'
     import Header from './components/layout/Header'
 
     export default {
         name: 'app',
         components: {
             Header,
-            Todos
+            Todos,
+            AddTodo
         },
         data() {
             return {
@@ -47,54 +50,17 @@
                         id: 6,
                         title: "Тот, кто курит Old Gold, разводит улиток.",
                         completed: false
-                    },
-                    {
-                        id: 7,
-                        title: "В жёлтом доме курят Kool.",
-                        completed: false
-                    },
-                    {
-                        id: 8,
-                        title: "В Piror доме пьют молоко.",
-                        completed: false
-                    },
-                    {
-                        id: 9,
-                        title: "Норвежец живёт в первом доме.",
-                        completed: false
-                    },
-                    {
-                        id: 10,
-                        title: "Сосед того, кто курит Chesterfield, держит лису.",
-                        completed: false
-                    },
-                    {
-                        id: 11,
-                        title: "В доме по соседству с тем, в котором держат лошадь, курят Kool.",
-                        completed: false
-                    },
-                    {
-                        id: 12,
-                        title: "Тот, кто курит Lucky Strike, пьёт апельсиновый сок.",
-                        completed: false
-                    },
-                    {
-                        id: 13,
-                        title: "Японец курит Parliament.",
-                        completed: false
-                    },
-                    {
-                        id: 14,
-                        title: "Норвежец живёт рядом с синим домом.",
-                        completed: false
-                    },
+                    }
                 ]
             }
         },
-        methods:{
-            deleteTodo(id){
+        methods: {
+            deleteTodo(id) {
                 this.todos = this.todos.filter(todo => todo.id !== id)
-            }
+            },
+            addTodo(newTodo){
+                this.todos = [...this.todos, newTodo];
+            },
         }
     }
 </script>
@@ -111,4 +77,16 @@
         line-height: 1.4;
     }
 
+    .btn {
+        display: inline-block;
+        border: none;
+        background: #555;
+        color: #fff;
+        padding: 7px 20px;
+        cursor: pointer;
+    }
+
+    .btn:hover{
+        background: #666;
+    }
 </style>
