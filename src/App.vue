@@ -1,69 +1,12 @@
 <template>
-    <div id="app">
-        <Header/>
-        <AddTodo v-on:add-todo="addTodo"/>
-        <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
     </div>
+    <router-view/>
+  </div>
 </template>
-
-<script>
-    import Todos from './components/Todos'
-    import AddTodo from './components/AddTodo'
-    import Header from './components/layout/Header'
-
-    export default {
-        name: 'app',
-        components: {
-            Header,
-            Todos,
-            AddTodo
-        },
-        data() {
-            return {
-                todos: [
-                    {
-                        id: 1,
-                        title: "Англичанин живёт в красном доме",
-                        completed: false
-                    },
-                    {
-                        id: 2,
-                        title: "У испанца есть собака.",
-                        completed: false
-                    },
-                    {
-                        id: 3,
-                        title: "В зелёном доме пьют кофе.",
-                        completed: false
-                    },
-                    {
-                        id: 4,
-                        title: "Украинец пьёт чай.",
-                        completed: false
-                    },
-                    {
-                        id: 5,
-                        title: "Зелёный дом стоит сразу справа от белого дома.",
-                        completed: false
-                    },
-                    {
-                        id: 6,
-                        title: "Тот, кто курит Old Gold, разводит улиток.",
-                        completed: false
-                    }
-                ]
-            }
-        },
-        methods: {
-            deleteTodo(id) {
-                this.todos = this.todos.filter(todo => todo.id !== id)
-            },
-            addTodo(newTodo){
-                this.todos = [...this.todos, newTodo];
-            },
-        }
-    }
-</script>
 
 <style>
     * {
@@ -86,7 +29,7 @@
         cursor: pointer;
     }
 
-    .btn:hover{
+    .btn:hover {
         background: #666;
     }
 </style>
